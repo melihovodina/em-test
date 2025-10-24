@@ -23,8 +23,8 @@ export class AuthService {
 
   static async login(email: string, password: string) {
     const user = await UserService.findByEmail(email);
-    console.log(user);
-
+    if(!user) throw ApiError.badRequest("Invalid email or password");
+    
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw ApiError.badRequest("Invalid email or password");
 

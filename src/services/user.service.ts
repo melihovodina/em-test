@@ -41,6 +41,14 @@ export class UserService {
     const existingUser = await User.findById(id);
     if (!existingUser) throw ApiError.badRequest("User not found");
 
+    if (data.email) {
+      const userWithEmail = await User.findOne({ email: data.email });
+
+      if (userWithEmail && userWithEmail.id !== id) {
+        throw ApiError.badRequest("Email is already in use");
+      }
+    }
+
     if (data.password) {
       data.password = await bcrypt.hash(data.password, 10);
     }
@@ -48,6 +56,7 @@ export class UserService {
     const updated = await User.findByIdAndUpdate(id, data, { new: true }).select("-password");
     return updated!;
   }
+
 
   static async delete(id: string) {
     const existingUser = await User.findById(id);

@@ -5,10 +5,7 @@ import {AuthService} from "../services/auth.service";
 export class AuthMiddleware {
   static verifyToken(req: Request, res: Response, next: NextFunction) {
     try {
-      const authHeader = req.headers.authorization;
-      if (!authHeader) return next(ApiError.unathorizedError());
-
-      const token = authHeader.split(" ")[1];
+      const token = req.cookies?.token;
       if (!token) return next(ApiError.unathorizedError());
 
       const userData = AuthService.validateToken(token);
