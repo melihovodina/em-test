@@ -15,8 +15,7 @@ const router = Router();
  *     summary: Get all users
  *     description: Retrieve list of all users (admin only)
  *     security:
- *       - cookieAuth: []
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: List of users
@@ -50,8 +49,7 @@ router.get("/", AuthMiddleware.isAdmin, UserController.getAll);
  *     summary: Get user by ID
  *     description: Retrieve a specific user by their ID (own profile or admin)
  *     security:
- *       - cookieAuth: []
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -96,8 +94,7 @@ router.get("/:id", AuthMiddleware.selfOrAdmin, UserController.getById);
  *     summary: Update user
  *     description: Update user information (own profile or admin)
  *     security:
- *       - cookieAuth: []
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -172,8 +169,7 @@ router.put("/:id", AuthMiddleware.selfOrAdmin, UserController.update);
  *     summary: Delete user
  *     description: Delete a user (admin only)
  *     security:
- *       - cookieAuth: []
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -214,8 +210,7 @@ router.delete("/:id", AuthMiddleware.isAdmin, UserController.delete);
  *     summary: Block user
  *     description: Block a user account (own profile or admin)
  *     security:
- *       - cookieAuth: []
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

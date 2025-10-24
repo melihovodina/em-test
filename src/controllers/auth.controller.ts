@@ -15,7 +15,7 @@ export class AuthController {
         maxAge: 3600 * 1000
       })
       .status(201)
-      .json({ user });
+      .json({ user, token });
   }
 
   static async login(req: Request, res: Response) {
@@ -29,6 +29,6 @@ export class AuthController {
         sameSite: "strict",
         maxAge: 3600 * 1000,
       })
-      .json({ user });
+      .json({ user, token });
   }
 }

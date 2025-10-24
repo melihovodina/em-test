@@ -16,15 +16,11 @@ const options: swaggerJsdoc.Options = {
     ],
     components: {
       securitySchemes: {
-        bearerAuth: {
+        BearerAuth: {
           type: 'http',
           scheme: 'bearer',
           bearerFormat: 'JWT',
-        },
-        cookieAuth: {
-          type: 'apiKey',
-          in: 'cookie',
-          name: 'token',
+          description: 'Enter JWT token from login/register response',
         },
       },
       schemas: {
@@ -128,6 +124,10 @@ const options: swaggerJsdoc.Options = {
           properties: {
             user: {
               $ref: '#/components/schemas/User',
+            },
+            token: {
+              type: 'string',
+              description: 'JWT authentication token',
             },
           },
         },
