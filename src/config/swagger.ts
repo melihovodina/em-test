@@ -125,10 +125,6 @@ const options: swaggerJsdoc.Options = {
             user: {
               $ref: '#/components/schemas/User',
             },
-            token: {
-              type: 'string',
-              description: 'JWT authentication token',
-            },
           },
         },
         Error: {
